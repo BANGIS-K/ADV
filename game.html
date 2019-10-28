@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <title>Adventure Game</title>
+        <style>
+            #game-window{
+                width: 800px;
+                height: 600px;
+                background-image: url(asset/background/fantasy_001.jpg);
+            }
+            #message-window{
+                position: absolute;
+                top: 400px;
+                left: 90px;
+                width: 600px;
+                height: 150px;
+                background-color: rgba(0, 0, 0, 0.5);
+                color: white;
+                font-size: 20pt;
+                padding-top: 10px;
+                padding-left: 20px;
+            }
+            #chara{
+                width: 400px;
+                position: absolute;
+                top: 100px;
+                left: 60px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="game-window">
+            <img id="chara" src="asset/chara/f054.png">
+            <div id="message-window">
+                Hello World!
+            </div>
+        </div>
+        <audio src="asset/bgm/bgm_01.ogg" loop autoplay></audio>
+        <script>
+            scenario = [
+                ["TEXT","Hello!"],
+                ["TEXT","World!"],
+                ["BG","url(asset/background/beach_001.jpg)"],
+                ["TEXT","aaa"],
+                ["TEXT","bbb"]
+            ];
+            i = 0;
+            game = document.querySelector("#game-window");
+            message = document.querySelector("#message-window");
+            message.addEventListener("click", ()=>{
+                if(i < scenario.length){
+                    switch(scenario[i][0]){
+                        case "TEXT":
+                            message.innerHTML = scenario[i][1];
+                            break;
+                        case "BG":
+                            game.style.backgroundImage = scenario[i][1];
+                            break;
+                    }
+                    i++;
+                }
+            });
+        </script>
+    </body>
+</html>
